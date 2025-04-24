@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1jq7nwdxv8ss"
-path="res://.godot/imported/corridor_hotel_29.png-04c5fabab83b818acf50e0590eb507ce.ctex"
+path="res://.godot/imported/corridor_hotel_29.png-086e018f4c5ca202f47606ecead2a139.ctex"
 metadata={
 "vram_texture": false
 }
@@ -13,8 +13,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://assets/corridor_hotel_29.png"
-dest_files=["res://.godot/imported/corridor_hotel_29.png-04c5fabab83b818acf50e0590eb507ce.ctex"]
+source_file="res://models/corridor/corridor_hotel_29.png"
+dest_files=["res://.godot/imported/corridor_hotel_29.png-086e018f4c5ca202f47606ecead2a139.ctex"]
 
 [params]
 
