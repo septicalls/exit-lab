@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cbcowkp5ym8ps"]
 
-[ext_resource type="PackedScene" uid="uid://pg0odixrsras" path="res://controller/controller.tscn" id="1_37kl0"]
+[ext_resource type="PackedScene" uid="uid://pg0odixrsras" path="res://models/scenes/controller.tscn" id="1_37kl0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_37kl0"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -11,9 +11,13 @@ sky_material = SubResource("ProceduralSkyMaterial_37kl0")
 
 [sub_resource type="Environment" id="Environment_6uqi0"]
 background_mode = 2
+background_color = Color(0.054796, 0.127081, 0.176279, 1)
 sky = SubResource("Sky_8uh7m")
 tonemap_mode = 2
+sdfgi_enabled = true
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.283636, 0.137574, 0.328837, 1)
 
 [node name="Node3D" type="Node3D"]
 
