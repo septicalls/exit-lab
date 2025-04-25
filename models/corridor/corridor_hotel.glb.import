@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://beqb8m6wdyyj7"
-path="res://.godot/imported/corridor_hotel.glb-f0b24d1a0d5217753e1124598c10a0f4.scn"
+path="res://.godot/imported/corridor_hotel.glb-1bfdf188d917997a025e42f4bcf60afc.scn"
 
 [deps]
 
-source_file="res://assets/corridor_hotel.glb"
-dest_files=["res://.godot/imported/corridor_hotel.glb-f0b24d1a0d5217753e1124598c10a0f4.scn"]
+source_file="res://models/corridor/corridor_hotel.glb"
+dest_files=["res://.godot/imported/corridor_hotel.glb-1bfdf188d917997a025e42f4bcf60afc.scn"]
 
 [params]
 
