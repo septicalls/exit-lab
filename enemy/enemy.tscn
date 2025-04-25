@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://c168xv2yoo1a4"]
+
+[ext_resource type="Script" uid="uid://o0v37gi285eg" path="res://follower.gd" id="1_2mvqj"]
+[ext_resource type="PackedScene" uid="uid://bl45h5vlyu0u5" path="res://enemy/assets/idle.fbx" id="2_ofsxj"]
+[ext_resource type="AnimationLibrary" uid="uid://nqm0insokwdd" path="res://enemy/assets/firing_rifle.fbx" id="3_1wwld"]
+[ext_resource type="AnimationLibrary" uid="uid://dux5qr6bg3m72" path="res://enemy/assets/rifle_idle.fbx" id="3_pmsee"]
+[ext_resource type="AnimationLibrary" uid="uid://11anr8h5rvqt" path="res://enemy/assets/rifle_walk.fbx" id="4_1wwld"]
+[ext_resource type="AnimationLibrary" uid="uid://cxyuegwwct5hq" path="res://enemy/assets/shoot_rifle.fbx" id="5_y5vj3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_2mvqj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7dm0k")
+disabled = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="idle" parent="." instance=ExtResource("2_ofsxj")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -1, 0)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="idle"]
+libraries = {
+&"firing_rifle": ExtResource("3_1wwld"),
+&"rifle_idle": ExtResource("3_pmsee"),
+&"rifle_walk": ExtResource("4_1wwld"),
+&"shoot_rifle": ExtResource("5_y5vj3")
+}

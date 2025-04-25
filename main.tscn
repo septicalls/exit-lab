@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://ls73u28urpci"]
+[gd_scene load_steps=10 format=3 uid="uid://ls73u28urpci"]
 
-[ext_resource type="Script" uid="uid://o0v37gi285eg" path="res://follower.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c168xv2yoo1a4" path="res://enemy/enemy.tscn" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://bwswja0nku2ih" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://pg0odixrsras" path="res://models/scenes/controller.tscn" id="2_0xm2m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
@@ -21,15 +22,13 @@ vertices = PackedVector3Array(-17.2309, 1, -12.4267, -17.2309, 1, 12.3233, 17.26
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
-size = Vector3(35.4619, 1, 25.8535)
+size = Vector3(127.311, 1, 91.1611)
 
 [sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+size = Vector3(127.311, 1, 91.1611)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_0xm2m"]
-
-[node name="Node3D" type="Node3D"]
+[node name="World" type="Node3D"]
+script = ExtResource("1_h2yge")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_h2yge")
@@ -53,19 +52,47 @@ transform = Transform3D(35.4619, 0, 0, 0, 1, 0, 0, 0, 25.8535, 0, 0, 0)
 mesh = SubResource("BoxMesh_7dm0k")
 skeleton = NodePath("../..")
 
-[node name="Follower" type="CharacterBody3D" parent="." node_paths=PackedStringArray("proto_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68812, 3.45057)
-script = ExtResource("1_ig7tw")
+[node name="Enemy" parent="." node_paths=PackedStringArray("proto_controller") instance=ExtResource("1_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04315, 3.45057)
 proto_controller = NodePath("../Controller")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Follower"]
-shape = SubResource("CapsuleShape3D_7dm0k")
-disabled = true
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Follower"]
-debug_enabled = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Follower"]
-mesh = SubResource("CapsuleMesh_0xm2m")
-
 [node name="Controller" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.98112, 0)
+
+[node name="Spawns" type="Node3D" parent="."]
+
+[node name="Spawn1" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6946, 0, 734.595)
+
+[node name="Spawn2" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1078.31, 0, 734.595)
+
+[node name="Spawn3" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1078.31, 0, -448.405)
+
+[node name="Spawn4" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 840.695, 0, -448.405)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 2826.33
+offset_top = 522.083
+offset_right = 2866.33
+offset_bottom = 562.083
+
+[node name="HitRect" type="ColorRect" parent="UI"]
+layout_mode = 0
+offset_left = -2891.33
+offset_top = -563.083
+offset_right = -2851.33
+offset_bottom = -523.083
+scale = Vector2(31.6281, 19.4605)
+color = Color(0.894118, 0.12549, 0.196078, 0.376471)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="player_hit" from="Controller" to="." method="_on_controller_player_hit"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

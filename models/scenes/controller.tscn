@@ -26,6 +26,8 @@ var lerp_speed = 10.0
 var direction = Vector3.ZERO
 var is_ads := false
 
+signal player_hit
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -127,6 +129,9 @@ func exit_ads() -> void:
 	ak_47_anim.play_backwards(\"ak47_ads\")
 	if camera.has_method(\"stop_ads\"):
 		camera.stop_ads()
+
+func hit():
+	emit_signal(\"player_hit\")
 "
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_48j15"]
