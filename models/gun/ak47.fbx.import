@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b2xgc6q770yyj"
-path="res://.godot/imported/ak47.fbx-a67dc16ebbb797e1211db52da73cfc51.scn"
+valid=false
 
 [deps]
 
 source_file="res://models/gun/ak47.fbx"
-dest_files=["res://.godot/imported/ak47.fbx-a67dc16ebbb797e1211db52da73cfc51.scn"]
 
 [params]
 

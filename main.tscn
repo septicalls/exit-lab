@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://ls73u28urpci"]
+
+[ext_resource type="Script" uid="uid://o0v37gi285eg" path="res://follower.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://pg0odixrsras" path="res://models/scenes/controller.tscn" id="2_0xm2m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_0xm2m"]
+sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 2
+sky = SubResource("Sky_0xm2m")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_7dm0k"]
+vertices = PackedVector3Array(-17.2309, 1, -12.4267, -17.2309, 1, 12.3233, 17.2691, 1, 12.3233, 17.2691, 1, -12.4267)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+size = Vector3(35.4619, 1, 25.8535)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dm0k"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0xm2m"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_h2yge")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.859948, -0.489107, 0.145825, -0.102421, 0.445281, 0.889514, -0.5, 0.75, -0.433013, 0, 11.1019, 0)
+shadow_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_7dm0k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.491095, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(0.999997, -0.00061748, 0.00217724, 0.00062241, 0.999997, -0.00225313, -0.00217583, 0.00225449, 0.999995, 0, 0, 0)
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(35.4619, 0, 0, 0, 1, 0, 0, 0, 25.8535, 0, 0, 0)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("../..")
+
+[node name="Follower" type="CharacterBody3D" parent="." node_paths=PackedStringArray("proto_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68812, 3.45057)
+script = ExtResource("1_ig7tw")
+proto_controller = NodePath("../Controller")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Follower"]
+shape = SubResource("CapsuleShape3D_7dm0k")
+disabled = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Follower"]
+debug_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Follower"]
+mesh = SubResource("CapsuleMesh_0xm2m")
+
+[node name="Controller" parent="." instance=ExtResource("2_0xm2m")]

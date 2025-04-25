@@ -151,10 +151,12 @@ transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
 transform = Transform3D(100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 0, 0)
 
 [node name="��tui de cartouche_Etui de cartouche material_0" type="MeshInstance3D" parent="Sketchfab_model/7,62x39mm AK-47 cartridge - Clean Low Poly_fbx/RootNode/��tui de cartouche"]
+layers = 3
 mesh = SubResource("ArrayMesh_pougl")
 skeleton = NodePath("")
 
 [node name="��tui de cartouche_Amorce material_0" type="MeshInstance3D" parent="Sketchfab_model/7,62x39mm AK-47 cartridge - Clean Low Poly_fbx/RootNode/��tui de cartouche"]
+layers = 3
 mesh = SubResource("ArrayMesh_f16kh")
 skeleton = NodePath("")
 
@@ -162,5 +164,6 @@ skeleton = NodePath("")
 transform = Transform3D(100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, -1.89175e-08, 3.20599, 8.73115e-09)
 
 [node name="Ogive_Ogive material_0" type="MeshInstance3D" parent="Sketchfab_model/7,62x39mm AK-47 cartridge - Clean Low Poly_fbx/RootNode/Ogive"]
+layers = 3
 mesh = SubResource("ArrayMesh_qeq85")
 skeleton = NodePath("")
